@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Button.module.sass';
 
-const Button = ({href, name}) => {
+const Button = ({href, name, handler}) => {
     return (
         <>
             <a href={href}>
-                <button className={styles.containerButton}>{name}</button>
+                <button onClick={handler} className={styles.containerButton}>{name}</button>
             </a>
         </>
 )}
