@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import { workingError, workingSuccess } from '../actions';
 import ACTION_TYPES from '../actions/actionTypes';
 import * as API from '../../api';
