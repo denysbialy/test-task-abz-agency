@@ -1,5 +1,5 @@
 import {React} from 'react';
-// import Button from './components/Button/Button';
+import './App.module.sass';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 
@@ -10,7 +10,6 @@ const App = () => {
       <Header />
       <Main />
       <footer></footer>
-      {/* <Button name='Sign Up' href='#signup'/> */}
     </div>
   );
 }
