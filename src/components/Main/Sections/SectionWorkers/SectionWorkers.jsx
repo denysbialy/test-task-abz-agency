@@ -1,34 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { workerRequest} from '../../../../redux/actions';
+import styles from './SectionWorkers.module.sass';
+import CONSTANTS from '../../../../constants';
+import WorkerCard from './WorkersCard/workerCard';
+import Button from '../../../Button/Button';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const UserList = (props) => {
-  const [usr, setUsr] = useState(6);
-const dispatch = useDispatch();
+  const [usersList, setUsersList] = useState(6);
+  const dispatch = useDispatch();
+  const {workers, isLoading, error} = useSelector((state) => state.worker || []);
+  const {users} = workers;
+  const requestWorkers = (options) => dispatch(workerRequest(options));
 
-const requestWorkers = (options) => dispatch(workerRequest(options));
-const showUsers = () => setUsr(usr + 6);
-
-useEffect(() => {
-  requestWorkers(usr);
-}, [usr]);
-
-const {workers, isLoading, error} = useSelector((state) => state.worker || []);
+  useEffect(() => { requestWorkers(usersList)}, [usersList]);
     
   return (
-    <div>
-      {isLoading && <div>LOADING </div>}
-      {error && <div>{error}</div>}
-      {console.log(workers)}
-      {workers.sort((w1, w2) => w2.registration_timestamp - w1.registration_timestamp)
-        .map((worker) => (
-          <div key={worker.id}>
-            {worker.name} <br/>
-            {worker.email}<br/>
-            {worker.registration_timestamp}<br/>
-          </div>
-      ))}
-      <button onClick={() => {requestWorkers(usr); showUsers()}}>Load More</button>
+    <div className={styles.container}>
+      <h2>{CONSTANTS.GET_REQUEST_H2}</h2>
+      {isLoading && <ClipLoader color={'black'} loading={isLoading} size={150}/>}
+      {error && <div>{error.message}</div>}
+      {!error && !isLoading && 
+      <div className={styles.containerCard}>
+        {(users || []).sort((w1, w2) => w2.registration_timestamp - w1.registration_timestamp)
+          .map((worker) => (
+            <WorkerCard worker={worker} />
+        ))}
+          {usersList === (users || []).length && 
+          <Button name='Show More' handler={() => setUsersList(usersList + 6)} /> }
+      </div>
+
+      }
       
     </div>
   );
