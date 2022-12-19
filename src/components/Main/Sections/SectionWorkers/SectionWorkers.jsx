@@ -17,7 +17,7 @@ const SectionWorkers = (props) => {
   useEffect(() => { requestWorkers(usersList)}, [usersList]);
     
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <h2>{CONSTANTS.GET_REQUEST_H2}</h2>
       {isLoading && <ClipLoader color={'#00BDD3'} loading={isLoading} size={150}/>}
       {error && <ShowErrorMessage error='error'/>}
@@ -33,7 +33,7 @@ const SectionWorkers = (props) => {
       </div>
 
       }
-    </div>
+    </section>
   );
 };
 export default SectionWorkers;
