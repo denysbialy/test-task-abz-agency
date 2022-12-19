@@ -8,7 +8,7 @@ import Button from '../../../Button/Button';
 import ClipLoader from "react-spinners/ClipLoader";
 import ShowErrorMessage from '../../../Errors/ShowErrorMessage';
 
-const UserList = (props) => {
+const SectionWorkers = (props) => {
   const [usersList, setUsersList] = useState(6);
   const dispatch = useDispatch();
   const {workers:{users}, isLoading, error} = useSelector((state) => state.worker || []);
@@ -36,4 +36,4 @@ const UserList = (props) => {
     </div>
   );
 };
-export default UserList;
+export default SectionWorkers;
