@@ -20,7 +20,7 @@ const SectionWorkers = (props) => {
     <section className={styles.container}>
       <h2>{CONSTANTS.GET_REQUEST_H2}</h2>
       {isLoading && <ClipLoader color={'#00BDD3'} loading={isLoading} size={150}/>}
-      {error && <ShowErrorMessage error='error'/>}
+      {error && <ShowErrorMessage error={error}/>}
       
       {!error && !isLoading && 
       <div className={styles.containerCard}>
