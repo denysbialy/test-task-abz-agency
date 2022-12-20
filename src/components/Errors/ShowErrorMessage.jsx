@@ -5,7 +5,7 @@ import styles from './ShowErrorMessage.module.sass';
 const ShowErrorMessage = ({error}) => {
     return (
         <div className={styles.errorContainer}>
-            <p>{error.nessage}</p>
+            <p>{error.message}</p>
         </div>
     );
 }
