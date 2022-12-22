@@ -5,6 +5,7 @@ const CONSTANTS = {
     "SUCCESSFULLY_H2": 'User successfully registered',
     "DUBLICATE_ERROR_CREATION": 'User with this phone or email already exist',
     "SELECT_POSITION": 'Select your position',
+    "H2_POST_REQUEST": 'Working with POST request'
 };
 
 export default CONSTANTS;
