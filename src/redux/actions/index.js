@@ -41,13 +41,13 @@ export const getTokenError = (error) => ({
 
 
 export const getPositionRequest = () => ({
-    type: ACTION_TYPES.GET_TOKEN_REQUEST,
+    type: ACTION_TYPES.GET_POSITION_REQUEST,
   });
 export const getPositionSuccess = (positions) => ({
-    type: ACTION_TYPES.GET_TOKEN_SUCCESS,
+    type: ACTION_TYPES.GET_POSITION_SUCCESS,
     payload: positions,
 });
 export const getPositionError = (error) => ({
-    type: ACTION_TYPES.GET_TOKEN_ERROR,
+    type: ACTION_TYPES.GET_POSITION_ERROR,
     payload: { error },
 });

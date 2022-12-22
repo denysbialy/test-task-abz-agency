@@ -2,6 +2,7 @@ import ACTION_TYPES from "../actions/actionTypes";
 
 const initialState ={
     success: false,
+    isLoading: false,
     error: null
 }
 
@@ -13,11 +14,13 @@ export default function createWorkerReducer(state = initialState, action){
             return {
                 ...state,
                 success: action.payload.success,
+                isLoading: true
             };
         case ACTION_TYPES.CREATE_WORKER_ERROR:
             return {
                 ...state,
                 error: action.payload.error,
+                isLoading: true
             }
         default:
             return state;

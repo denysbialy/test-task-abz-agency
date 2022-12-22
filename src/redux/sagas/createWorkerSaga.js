@@ -5,8 +5,8 @@ import * as API from '../../api';
 
 function* createWorkerSaga(action) {
   try {
-    const data = yield API.createWorker(action.payload.form, action.payload.token);
-    yield put(createWorkerSuccess(data));
+    const response = yield API.createWorker(action.payload.form, action.payload.token);
+    yield put(createWorkerSuccess(response));
   } catch (error) {
     yield put(createWorkerError(error));
   }
