@@ -8,8 +8,8 @@ import Button from '../../../Button/Button';
 import ClipLoader from "react-spinners/ClipLoader";
 import ShowErrorMessage from '../../../Errors/ShowErrorMessage';
 
-const SectionWorkers = (props) => {
-  const [usersList, setUsersList] = useState(6);
+const SectionWorkers = ({usersList, setUsersList}) => {
+
   const dispatch = useDispatch();
   const {workers:{users}, isLoading, error} = useSelector((state) => state.worker || []);
   const requestWorkers = (options) => dispatch(workerRequest(options));

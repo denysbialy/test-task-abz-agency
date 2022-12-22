@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { createWorkerRequest, getPositionRequest, getTokenRequest } from '../../../../redux/actions';
 import { useDispatch, useSelector, } from 'react-redux';
 import styles from './SectionSignUp.module.sass';
@@ -13,7 +13,7 @@ import Button from '../../../Button/Button';
 
 const initialValues = {name: '', email: '', phone: '', position_id: '', photo:''}
 
-const SectionSignUp = ({formData}) => {
+const SectionSignUp = ({formData ,usersList, setUsersList}) => {
   const dispatch = useDispatch();
 
   const {token} = useSelector((state) => state.token);
@@ -27,39 +27,45 @@ const SectionSignUp = ({formData}) => {
 
   return (
     <section className={styles.container}>
-      <h2>{CONSTANTS.H2_POST_REQUEST}</h2>
-    <Formik 
-      initialValues = {initialValues}
-      validationSchema={SignupSchema}
-      onSubmit ={(values, {resetForm}) =>{
-        formData.append('photo', values.photo);
-        formData.append('position_id', +values.position_id);
-        formData.append('name', values.name);
-        formData.append('email', values.email);
-        formData.append('phone', values.phone);
-        resetForm(initialValues);
-        requestCreationWorker(formData, token);
-      }}
-    >
-        {({errors, touched, setFieldValue})=>(
+      {creationData.isLoading && creationData.success.success ? 
+          <Successfully usersList={usersList} setUsersList={setUsersList} /> 
+          :
           <>
-          
-          {creationData.isLoading && !creationData.success.success
-          &&<div>{CONSTANTS.DUBLICATE_ERROR_CREATION}</div>}
-          
-          {creationData.isLoading && creationData.success.success ? <Successfully /> :
-          <Form className={styles.containerForm}>
-            <InputForm name='name' errors={errors} touched={touched} />
-            <InputForm name='email' errors={errors} touched={touched} />
-            <InputForm name='phone' errors={errors} touched={touched} />
-            <RadioInputs errors={errors} touched={touched}/>
-            <FileUploadInput setFieldValue={setFieldValue} errors={errors} touched={touched}/>
-            <Button type='submit' name='Sign Up' />
-          </Form>}
-        
-        </>
-            )}
-    </Formik>
+            <h2>{CONSTANTS.H2_POST_REQUEST}</h2>
+            <Formik 
+              initialValues = {initialValues}
+              validationSchema={SignupSchema}
+              onSubmit ={(values, {resetForm}) =>{
+                formData.append('photo', values.photo);
+                formData.append('position_id', +values.position_id);
+                formData.append('name', values.name);
+                formData.append('email', values.email);
+                formData.append('phone', values.phone);
+                resetForm(initialValues);
+                requestCreationWorker(formData, token);
+              }}
+            >
+                {({errors, touched, setFieldValue})=>(
+                  <>
+                  
+                  {creationData.isLoading && !creationData.success.success
+                  &&<div>{CONSTANTS.DUBLICATE_ERROR_CREATION}</div>}
+                  
+                  
+                  <Form className={styles.containerForm}>
+                    <InputForm name='name' errors={errors} touched={touched} />
+                    <InputForm name='email' errors={errors} touched={touched} />
+                    <InputForm name='phone' errors={errors} touched={touched} />
+                    <RadioInputs errors={errors} touched={touched}/>
+                    <FileUploadInput setFieldValue={setFieldValue} errors={errors} touched={touched}/>
+                    <Button type='submit' name='Sign Up' />
+                  </Form>
+                
+                </>
+                    )}
+            </Formik>
+    </>
+    }
             </section>
   );
 };

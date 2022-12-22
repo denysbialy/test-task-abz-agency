@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Successfully.module.sass';
 import CONSTANTS from '../../../../../constants';
-const Successfully = () => {
+import { useDispatch } from 'react-redux';
+import { workerRequest } from '../../../../../redux/actions';
+
+const Successfully = ({usersList,setUsersList}) => {
+    const dispatch = useDispatch();
+
+    const requestWorkers = (options) => dispatch(workerRequest(options));
+    useEffect(() => {
+        setUsersList(6);
+        requestWorkers(6)
+    }, []);
     return (
         <section className={styles.container}>
             <h2>{CONSTANTS.SUCCESSFULLY_H2}</h2>
