@@ -8,11 +8,11 @@ export const SignupSchema = Yup.object().shape({
     phone: Yup.string().matches(/^[\+]{0,1}380([0-9]{9})$/, 'Invalid number phone').required('Required'),
     position_id: Yup.number().min(1).required('Required'),
     photo: Yup.mixed().required('Required') 
-    .test('fileSize', "File Size is too large", value =>{
+    .test('fileSize', "File Size is too large (max 5 mb)", value =>{
       if(!value) return 0 <= FILE_SIZE;
       return value.size <= FILE_SIZE;
     })
-    .test('fileType', "Unsupported File Format", value => {
+    .test('fileType', "Unsupported File Format (jpeg/jpg)", value => {
       if(!value)return SUPPORTED_FORMATS.includes('');
       return SUPPORTED_FORMATS.includes(value.type);
     } )
