@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { createWorkerRequest, getPositionRequest, getTokenRequest } from '../../../../redux/actions';
 import { useDispatch, useSelector, } from 'react-redux';
-import styles from './Section.module.sass';
+import styles from './SectionSignUp.module.sass';
 import { SignupSchema } from '../../../Errors/schemaValidation';
 import Successfully from './Successfully/Successfully';
 import CONSTANTS from '../../../../constants';
 import InputForm from '../../../Inputs/basicInput/InputForm';
 import RadioInputs from '../../../Inputs/radioInputs/RadioInputs';
 import FileUploadInput from '../../../Inputs/fileInput/fileUploadInput';
+import Button from '../../../Button/Button';
 
 const initialValues = {name: '', email: '', phone: '', position_id: '', photo:''}
 
@@ -25,6 +26,8 @@ const SectionSignUp = ({formData}) => {
   useEffect(() => { requestToken(); requestPosition()}, []);
 
   return (
+    <section className={styles.container}>
+      <h2>{CONSTANTS.H2_POST_REQUEST}</h2>
     <Formik 
       initialValues = {initialValues}
       validationSchema={SignupSchema}
@@ -45,18 +48,19 @@ const SectionSignUp = ({formData}) => {
           &&<div>{CONSTANTS.DUBLICATE_ERROR_CREATION}</div>}
           
           {creationData.isLoading && creationData.success.success ? <Successfully /> :
-          <Form className={styles.container}>
+          <Form className={styles.containerForm}>
             <InputForm name='name' errors={errors} touched={touched} />
             <InputForm name='email' errors={errors} touched={touched} />
             <InputForm name='phone' errors={errors} touched={touched} />
             <RadioInputs errors={errors} touched={touched}/>
             <FileUploadInput setFieldValue={setFieldValue} errors={errors} touched={touched}/>
-          <button type='submit'> Submit </button> 
-        </Form>}
+            <Button type='submit' name='Sign Up' />
+          </Form>}
         
         </>
             )}
     </Formik>
+            </section>
   );
 };
 
