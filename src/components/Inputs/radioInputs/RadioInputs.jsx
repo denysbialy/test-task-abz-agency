@@ -16,7 +16,7 @@ const RadioInputs = ({errors, touched}) => {
 
     return (
         <div className={styles.radioInputsContainer}>
-              <h2>{CONSTANTS.SELECT_POSITION}</h2>
+              <h3>{CONSTANTS.SELECT_POSITION}</h3>
               {data.positions.map(e => {
                 return (
                   <label key ={e.id+10}> 
