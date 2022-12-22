@@ -5,10 +5,16 @@ export const workingUser = (action) =>
     .then(res => res.data)
 
 export const createWorker = async (values, token) =>{
+try {
     return await fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', { method: 'POST', body: values, headers: { 'Token': token }, })
     .then(response => response.json())
     .then(data => data ) 
     .catch(error => error);
+    
+} catch (error) {
+    return error;
+}
+
 }
 
 export const getToken = () => 
