@@ -17,7 +17,7 @@ const SectionWorkers = ({usersList, setUsersList}) => {
   useEffect(() => { requestWorkers(usersList)}, [usersList]);
     
   return (
-    <section className={styles.container}>
+    <section className={styles.container} id='users'>
       <h2>{CONSTANTS.GET_REQUEST_H2}</h2>
       {isLoading && <ClipLoader color={'#00BDD3'} loading={isLoading} size={150}/>}
       {error && <ShowErrorMessage error={error}/>}
