@@ -5,11 +5,13 @@ import SectionWorkers from './Sections/SectionWorkers/SectionWorkers';
 import SectionSignUp from './Sections/SectionSignUp/SectionSignUp';
 
 const Main = () => {
+    const formData = new FormData();
+
     return (
         <main className={styles.container}>
             <SectionInfo />
             <SectionWorkers />
-            <SectionSignUp />
+            <SectionSignUp formData={formData}/>
         </main>
     );
 }
