@@ -25,8 +25,8 @@ const SectionWorkers = ({usersList, setUsersList}) => {
       {!error && !isLoading && 
       <div className={styles.containerCard}>
         {(users || []).sort((w1, w2) => w2.registration_timestamp - w1.registration_timestamp)
-          .map((worker) => (
-            <WorkerCard worker={worker} />
+          .map((worker, index) => (
+            <WorkerCard worker={worker} key={index}/>
         ))}
           {usersList <= (users || []).length && 
           <Button name='Show More' handler={() => setUsersList(usersList + 6)} /> }
