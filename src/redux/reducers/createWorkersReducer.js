@@ -21,7 +21,9 @@ export default function createWorkerReducer(state = initialState, action){
                 ...state,
                 error: action.payload.error,
                 isLoading: true
-            }
+            };
+        case ACTION_TYPES.CLEAR_DATA:
+            return initialState;
         default:
             return state;
     }

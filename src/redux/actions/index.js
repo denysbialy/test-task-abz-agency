@@ -16,7 +16,6 @@ export const workingError = (error) => ({
 export const createWorkerRequest = (form, token) => ({
     type: ACTION_TYPES.CREATE_WORKER_REQUEST,
     payload : {form, token},
-    
   });
 export const createWorkerSuccess = (success) => ({
     type: ACTION_TYPES.CREATE_WORKER_SUCCESS,
@@ -25,6 +24,9 @@ export const createWorkerSuccess = (success) => ({
 export const createWorkerError = (error) => ({
     type: ACTION_TYPES.CREATE_WORKER_ERROR,
     payload: { error },
+});
+export const createWorkerClearData = () => ({
+    type: ACTION_TYPES.CLEAR_DATA,
 });
 
 export const getTokenRequest = () => ({
