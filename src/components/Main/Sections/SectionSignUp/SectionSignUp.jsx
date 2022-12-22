@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Form, Formik } from 'formik';
 import { createWorkerRequest, getPositionRequest, getTokenRequest } from '../../../../redux/actions';
 import { useDispatch, useSelector, } from 'react-redux';
+
 import styles from './SectionSignUp.module.sass';
 import { SignupSchema } from '../../../Errors/schemaValidation';
 import Successfully from './Successfully/Successfully';
@@ -10,8 +11,9 @@ import InputForm from '../../../Inputs/basicInput/InputForm';
 import RadioInputs from '../../../Inputs/radioInputs/RadioInputs';
 import FileUploadInput from '../../../Inputs/fileInput/fileUploadInput';
 import Button from '../../../Button/Button';
+import ErrorValidationEmailOrPhone from '../../../Errors/ErrorValidationEmailOrPhone';
 
-const initialValues = {name: '', email: '', phone: '', position_id: '', photo:''}
+const initialValues = {name: '', email: '', phone: '', position_id: '', photo:''};
 
 const SectionSignUp = ({formData ,usersList, setUsersList}) => {
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ const SectionSignUp = ({formData ,usersList, setUsersList}) => {
 
   const requestToken = () => dispatch(getTokenRequest());
   const requestPosition = () => dispatch(getPositionRequest());
-  const requestCreationWorker = (form, token) => dispatch(createWorkerRequest(form, token ))
+  const requestCreationWorker = (form, token) => dispatch(createWorkerRequest(form, token ));
   
   useEffect(() => { requestToken(); requestPosition()}, []);
 
@@ -47,11 +49,7 @@ const SectionSignUp = ({formData ,usersList, setUsersList}) => {
             >
                 {({errors, touched, setFieldValue})=>(
                   <>
-                  
-                  {creationData.isLoading && !creationData.success.success
-                  &&<div>{CONSTANTS.DUBLICATE_ERROR_CREATION}</div>}
-                  
-                  
+                  <ErrorValidationEmailOrPhone />
                   <Form className={styles.containerForm}>
                     <InputForm name='name' errors={errors} touched={touched} />
                     <InputForm name='email' errors={errors} touched={touched} />
