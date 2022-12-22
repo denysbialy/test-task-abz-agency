@@ -8,22 +8,25 @@ import styles from './FileUploadInput.module.sass';
 const FileUploadInput = ({setFieldValue, errors, touched}) => {
     const [fileName, setFileName] = useState('Upload your photo');
     const redErrorMessage = classNames({
-        [styles.errorMessage]: errors.position_id && touched.position_id
+        [styles.errorMessage]: errors.photo && touched.photo
     });
 
     return (
-        <>
-            <label for='file' className={styles.container}>
+        <div>
+            <label htmlFor='file' className={styles.container}>
                 <div className={styles.uploadButton}>Upload</div>
                 <input className={styles.notIsVisibility} id='file' name='photo' type='file' accept='.jpg, .jpeg' onChange={event => {
-                setFileName(event.target.files[0].name)
+                event.target.files[0] ? 
+                 setFileName(event.target.files[0].name)
+                 : 
+                 setFileName('Upload your photo')
                 setFieldValue('photo', event.target.files[0])}}/>
                 <div className={styles.fileName}>{fileName}</div>
             </label>
-            {errors.photo && touched.photo && <ErrorMessage name='position_id'>
+            {errors.photo && <ErrorMessage name='photo'>
                 {msg => <div className={redErrorMessage}>{msg}</div>}
-              </ErrorMessage>}
-        </>
+            </ErrorMessage>}
+        </div>
     );
 }
 
