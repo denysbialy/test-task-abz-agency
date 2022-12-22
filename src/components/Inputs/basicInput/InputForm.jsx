@@ -14,12 +14,19 @@ const InputForm = ({name, errors, touched}) => {
     const redLebelMessage = classNames({
         [styles.nameInputLabel]: true,
         [styles.lebelErrorMessage]: errors[name] && touched[name]
-    })
+    });
+
+    const formatPhone = () => {
+        return (
+            <div className={styles.formatPhone}>+38 (XXX) XXX - XX - XX</div>
+        )
+    }
     
     return (
             <div className={styles.container}>
             <Field name={name} placeholder={`Your ${name}`} className={input}/>
             <div className={redLebelMessage}>{name}</div>
+            {name === 'phone' && !errors.phone && formatPhone()}
             {errors[name] && touched[name] && <ErrorMessage name={name}>{msg => <div className={redErrorMessage}>{msg}</div>}</ErrorMessage>}
             </div>
     );
