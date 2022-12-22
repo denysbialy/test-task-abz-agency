@@ -11,7 +11,7 @@ import ShowErrorMessage from '../../../Errors/ShowErrorMessage';
 const SectionWorkers = ({usersList, setUsersList}) => {
 
   const dispatch = useDispatch();
-  const {workers:{users}, isLoading, error} = useSelector((state) => state.worker || []);
+  const {workers:{users}, isLoading, error} = useSelector((state) => state.worker);
   const requestWorkers = (options) => dispatch(workerRequest(options));
 
   useEffect(() => { requestWorkers(usersList)}, [usersList]);
