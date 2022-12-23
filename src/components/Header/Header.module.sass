@@ -4,12 +4,21 @@
     justify-content: center
     margin-top: 13px
     margin-bottom: 13px
-
+    @media( max-width: 1024px )
+        width: 100%
 .head
     width: 1170px
     display: flex
     justify-content: space-between
-    
+    @media( max-width: 1024px )
+        width: 1024px
+        padding: 0 60px
+    @media( max-width: 768px )
+        width: 768px
+        padding: 0 32px
+    @media( max-width: 360px )
+        width: 360px
+        padding: 0 16px
     .buttons
         display: flex
         gap: 10px
