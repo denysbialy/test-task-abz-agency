@@ -1,9 +1,29 @@
 .container 
-    width: 1170px
     display: flex
     flex-direction: column
+    width: 1170px
     align-items: center
     margin-bottom: 144px
+    @media( max-width:  1024px)
+        width: 1024px
+    @media( max-width:  768px)
+        width: 768px
+    @media( max-width:  425px)
+        width: 425px
+    @media( max-width:  375px)
+        width: 375px
+    @media( max-width:  360px)
+        width: 360px
+    svg
+        @media( max-width:  425px)
+            width: 375px
+            height: 245px
+        @media( max-width:  375px)
+            width: 320px
+            height: 290px
+        @media( max-width:  360px)
+            width: 300px
+            height: 260px
     h2
         font-size: 40px
         line-height: 40px
