@@ -1,20 +1,29 @@
 .container
+    position: relative
+    display: flex
+    justify-content: center
     width: 370px
     height: 254px
     border-radius: 10px
     background-color: #ffffff
+    @media( max-width:  1024px)
+        width: 282px
+        
     img
         width: 70px
         height: 70px
         border-radius: 50%
     .containerInfo
-        padding: 20px
         display: flex
         flex-direction: column
         justify-content: center
         align-items: center
         gap: 20px
+        @media( max-width:  1024px)
+        width: 282px
+        // padding: 0
     p
+        
         text-align: center
         width: 330px
         white-space: nowrap
@@ -24,3 +33,16 @@
         line-height: 26px
         margin: 0
         
+.hidden
+    display: flex
+    align-items: center
+    justify-content: center
+    position: absolute
+    z-index: 3
+    background-color: rgba(0, 0, 0, 0.87)
+    color: #fff
+    height: 32px
+    min-width: 276px
+    border-radius: 4px
+    padding: 3px 16px
+    left: 80px
