@@ -23,15 +23,17 @@ const SectionWorkers = ({usersList, setUsersList}) => {
       {error && <ShowErrorMessage error={error}/>}
       
       {!error && !isLoading && 
+      <>
       <div className={styles.containerCard}>
         {(users || []).sort((w1, w2) => w2.registration_timestamp - w1.registration_timestamp)
           .map((worker, index) => (
             <WorkerCard worker={worker} key={index}/>
-        ))}
-          {usersList <= (users || []).length && 
-          <Button name='Show More' handler={() => setUsersList(usersList + 6)} /> }
+            ))}
       </div>
+          {usersList <= (users || []).length && 
+      <Button name='Show More' handler={() => setUsersList(usersList + 6)} /> }
 
+      </>
       }
     </section>
   );
