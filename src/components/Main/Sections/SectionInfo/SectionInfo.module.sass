@@ -6,17 +6,37 @@
     height: 650px
     display: flex
     justify-content: center
-    
+    @media( max-width:1024px)
+        width: 1024px
+        background-size: 1024px 650px
+    @media( max-width: 768px)
+        width: 768px
+        height: 500px
+        background-size: 768px 500px
+    @media( max-width: 360px)
+        width: 360px
+        height: 500px
+        background-size: 360px 500px
+        
 .positionsText
+    display: flex
+    flex-direction: column
     margin-top: 168px
     width: 380px
     color: #ffffff
     text-align: center
+    @media( max-width: 768px)
+        margin-top: 89px
+    @media( max-width: 360px)
+        width: 328px
+        margin-top: 40px
     
     h1
         font-size: 40px
         height: 80px
         line-height: 40px
+    @media( max-width: 360px)
+        gap: 20px
     p
         font-size: 16px
         height: 156px
