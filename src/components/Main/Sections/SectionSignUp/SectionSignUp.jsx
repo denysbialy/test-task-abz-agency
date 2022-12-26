@@ -33,7 +33,7 @@ const SectionSignUp = ({formData ,usersList, setUsersList}) => {
           <Successfully usersList={usersList} setUsersList={setUsersList} /> 
           :
           <>
-            <h2>{CONSTANTS.H2_POST_REQUEST}</h2>
+            <h2>{CONSTANTS.H2_REGISTER_WORKERS}</h2>
             <Formik 
               initialValues = {initialValues}
               validationSchema={SignupSchema}

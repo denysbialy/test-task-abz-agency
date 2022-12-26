@@ -9,6 +9,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import ShowErrorMessage from '../../../Errors/ShowErrorMessage';
 
 const SectionWorkers = ({usersList, setUsersList}) => {
+  const [showWorkers, setShowWorkers] = useState(6);
 
   const dispatch = useDispatch();
   const {workers:{users}, isLoading, error} = useSelector((state) => state.worker);
@@ -16,22 +17,23 @@ const SectionWorkers = ({usersList, setUsersList}) => {
 
   useEffect(() => { requestWorkers(usersList)}, [usersList]);
     
+  const showUsers = (users || []).sort((w1, w2) => w2.registration_timestamp - w1.registration_timestamp).slice(0, showWorkers);
+
   return (
     <section className={styles.container} id='users'>
-      <h2>{CONSTANTS.GET_REQUEST_H2}</h2>
+      <h2>{CONSTANTS.GET_SHOW_WORKERS_REQUEST_H2}</h2>
       {isLoading && <ClipLoader color={'#00BDD3'} loading={isLoading} size={150}/>}
       {error && <ShowErrorMessage error={error}/>}
       
       {!error && !isLoading && 
       <>
       <div className={styles.containerCard}>
-        {(users || []).sort((w1, w2) => w2.registration_timestamp - w1.registration_timestamp)
-          .map((worker, index) => (
+        {showUsers.map((worker, index) => (
             <WorkerCard worker={worker} key={index}/>
             ))}
       </div>
-          {usersList <= (users || []).length && 
-      <Button name='Show More' handler={() => setUsersList(usersList + 6)} /> }
+          {showWorkers <= (showUsers || []).length && 
+      <Button name='Show More' handler={() => setShowWorkers(showWorkers + 6)} /> }
 
       </>
       }

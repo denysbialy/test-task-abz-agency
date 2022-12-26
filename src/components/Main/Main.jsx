@@ -6,7 +6,7 @@ import SectionSignUp from './Sections/SectionSignUp/SectionSignUp';
 
 const Main = () => {
     const formData = new FormData();
-    const [usersList, setUsersList] = useState(6);
+    const [usersList, setUsersList] = useState(100);
     
     return (
         <main className={styles.container}>
